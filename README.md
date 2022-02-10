@@ -17,7 +17,7 @@ end
 create config for [Codepagex](https://github.com/tallakt/codepagex) to support "shift-jis" encoding in your `config/config.exs`
 ``` elixir
 config :codepagex, :encodings, [
-	"VENDORS/MICSFT/WINDOWS/CP932"
+  "VENDORS/MICSFT/WINDOWS/CP932"
 ]
 ```
 
