@@ -1,5 +1,5 @@
-defmodule SdvxMusicCrawler.DocumentTest do
-	alias SdvxMusicCrawler.{Html, Document}
+defmodule SdvxMusicScraper.DocumentTest do
+	alias SdvxMusicScraper.{Html, Document}
 
 	use ExUnit.Case
 

@@ -1,8 +1,8 @@
-defmodule SdvxMusicCrawler do
-  alias SdvxMusicCrawler.{Html, Document}
+defmodule SdvxMusicScraper do
+  alias SdvxMusicScraper.{Html, Document}
 
-  @spec get_music_from_page(integer()) :: %{}
-  def get_music_from_page(page) do
+  @spec get_from_page(integer()) :: list(%{})
+  def get_from_page(page) do
     page
     |> Html.from_web()
     |> Html.parse()
@@ -12,7 +12,8 @@ defmodule SdvxMusicCrawler do
   @doc """
   get list of all music from sdvx web synchronously page by page
   """
-  def get_all_music_sync() do
+  @spec get_all_sync() :: list(%{})
+  def get_all_sync() do
     first_page = Html.from_web(1)
     |> Html.parse()
 
@@ -21,7 +22,7 @@ defmodule SdvxMusicCrawler do
 
     Enum.reduce(2..count, first_page_music_list,
       fn page, music_list ->
-        music_list ++ get_music_from_page(page)
+        music_list ++ get_from_page(page)
       end
     )
   end

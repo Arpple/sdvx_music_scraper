@@ -1,9 +1,9 @@
-defmodule SdvxMusicCrawler.MixProject do
+defmodule SdvxMusicScraper.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :sdvx_music_crawler,
+      app: :sdvx_music_scraper,
       version: "0.1.0",
       elixir: "~> 1.12",
       start_permanent: Mix.env() == :prod,

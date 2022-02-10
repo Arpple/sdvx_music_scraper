@@ -1,4 +1,4 @@
-defmodule SdvxMusicCrawler.Document do
+defmodule SdvxMusicScraper.Document do
 	@moduledoc false
 
 	@domain "https://p.eagate.573.jp"

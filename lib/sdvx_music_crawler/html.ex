@@ -1,4 +1,4 @@
-defmodule SdvxMusicCrawler.Html do
+defmodule SdvxMusicScraper.Html do
 	@moduledoc false
 
 	@url "https://p.eagate.573.jp/game/sdvx/vi/music/index.html"

@@ -1,6 +1,6 @@
-# SdvxMusicCrawler
+# SdvxMusicScraper
 
-elixir library to get music info from [Sound Voltext EXCEED GEAR website](https://p.eagate.573.jp/game/sdvx/vi/music/index.html)
+elixir library to get music info from [Sound Voltex EXCEED GEAR website](https://p.eagate.573.jp/game/sdvx/vi/music/index.html)
 
 ## Installation
 
@@ -9,7 +9,7 @@ install via github url
 ```elixir
 def deps do
   [
-    {:sdvx_music_crawler, git: "https://github.com/arpple/sdvx-music-crawler.git", tag: "0.1"}
+    {:sdvx_music_scraper, git: "https://github.com/arpple/sdvx_music_scraper.git", tag: "0.1"}
   ]
 end
 ```
@@ -17,7 +17,7 @@ end
 ## Usage
 get all music. this will get from page by page synchronously, so it will be slow
 ``` elixir
-SdvxMusicCrawler.get_all_music()
+SdvxMusicScraper.get_all_sync()
 # => [
   %{
     artist: "meiyo",
@@ -33,11 +33,11 @@ SdvxMusicCrawler.get_all_music()
 or get single page
 
 ``` elixir
-SdvxMusicCrawler.get_from_page(1)
+SdvxMusicScraper.get_from_page(1)
 # => [...]
 ```
 
 
 ## Todo
-- parallel crawling
+- parallel scraping
 - hexdoc (maybe)
