@@ -1,4 +1,6 @@
 defmodule SdvxMusicCrawler.Html do
+	@moduledoc false
+
 	@url "https://p.eagate.573.jp/game/sdvx/vi/music/index.html"
 	@encoding "VENDORS/MICSFT/WINDOWS/CP932"
 
@@ -15,6 +17,10 @@ defmodule SdvxMusicCrawler.Html do
 		Codepagex.to_string!(body, @encoding)
 	end
 
+	@doc """
+	get html content from file without decoding from 'shift-jis'
+	your file need to be in 'utf-8'
+	"""
 	def from_file(path) do
 		path
 		|> Path.expand()
