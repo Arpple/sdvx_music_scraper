@@ -1,5 +1,7 @@
 defmodule SdvxMusicCrawler do
   alias SdvxMusicCrawler.{Html, Document}
+
+  @spec get_music_from_page(integer()) :: %{}
   def get_music_from_page(page) do
     page
     |> Html.from_web()
@@ -7,7 +9,10 @@ defmodule SdvxMusicCrawler do
     |> Document.get_music_list()
   end
 
-  def get_all_music() do
+  @doc """
+  get list of all music from sdvx web synchronously page by page
+  """
+  def get_all_music_sync() do
     first_page = Html.from_web(1)
     |> Html.parse()
 

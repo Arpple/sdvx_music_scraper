@@ -1,21 +1,43 @@
 # SdvxMusicCrawler
 
-**TODO: Add description**
+elixir library to get music info from [Sound Voltext EXCEED GEAR website](https://p.eagate.573.jp/game/sdvx/vi/music/index.html)
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `sdvx_music_crawler` to your list of dependencies in `mix.exs`:
+install via github url
 
 ```elixir
 def deps do
   [
-    {:sdvx_music_crawler, "~> 0.1.0"}
+    {:sdvx_music_crawler, git: "https://github.com/arpple/sdvx-music-crawler.git", tag: "0.1"}
   ]
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/sdvx_music_crawler](https://hexdocs.pm/sdvx_music_crawler).
+## Usage
+get all music. this will get from page by page synchronously, so it will be slow
+``` elixir
+SdvxMusicCrawler.get_all_music()
+# => [
+  %{
+    artist: "meiyo",
+    id: "qITA4PnaDDDpSeOPWszPmQ",
+    jacket: "https://p.eagate.573.jp/game/sdvx/vi/common/jacket.html?img=bcf5MwWqag47zYdBbue-bg",
+    levels: %{adv: 10, exh: 14, grv: nil, hvn: nil, inf: nil, mxm: 17, nov: 3},
+    name: "↑↑↓↓←→←→BA"
+  },
+  ...
+]
+```
 
+or get single page
+
+``` elixir
+SdvxMusicCrawler.get_from_page(1)
+# => [...]
+```
+
+
+## Todo
+- parallel crawling
+- hexdoc (maybe)
