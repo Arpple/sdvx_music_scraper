@@ -12,8 +12,7 @@ defmodule SdvxMusicCrawler.Html do
 		form = [{"page", page}]
 		%{body: body} = HTTPoison.post!(@url, {:multipart, form}, [])
 
-		html = body
-		|> Codepagex.to_string!(@encoding)
+		Codepagex.to_string!(body, @encoding)
 	end
 
 	def from_file(path) do
