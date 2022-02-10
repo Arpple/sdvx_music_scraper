@@ -1,30 +1,23 @@
 defmodule SdvxMusicCrawler do
-  def get_content(), do: get_content("1")
-
-  def get_content(page) when is_number(page) do
-    get_content(to_string(page))
+  alias SdvxMusicCrawler.{Html, Document}
+  def get_music_from_page(page) do
+    page
+    |> Html.from_web()
+    |> Html.parse()
+    |> Document.get_music_list()
   end
 
-  def get_content(page) when is_binary(page) do
-    form = [{"page", page}]
-    %{body: body} = HTTPoison.post!(@url, {:multipart, form}, [])
+  def get_all_music() do
+    first_page = Html.from_web(1)
+    |> Html.parse()
 
-    html = body
-    |> Codepagex.to_string!(@encoding)
-  end
+    first_page_music_list = Document.get_music_list(first_page)
+    count = Document.get_page_count(first_page)
 
-  def parse_document(html_content) do
-    {:ok, doc} = Floki.parse_document(html_content)
-    doc
-  end
-
-  def parse_music_info(document) do
-    document
-    |> Floki.find(".info")
-    |> Enum.map(&get_music_name/1)
-  end
-
-  def get_music_name(document) do
-    Floki.text(document)
+    Enum.reduce(2..count, first_page_music_list,
+      fn page, music_list ->
+        music_list ++ get_music_from_page(page)
+      end
+    )
   end
 end
