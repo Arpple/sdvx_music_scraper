@@ -1,22 +1,21 @@
 defmodule SdvxMusicCrawler do
-  @url "https://p.eagate.573.jp/game/sdvx/vi/music/index.html"
-  @encoding "VENDORS/MICSFT/WINDOWS/CP932"
+  def get_content(), do: get_content("1")
 
-  def get_document(), do: get_document("1")
-
-  def get_document(page) when is_number(page) do
-    get_document(to_string(page))
+  def get_content(page) when is_number(page) do
+    get_content(to_string(page))
   end
 
-  def get_document(page) when is_binary(page) do
+  def get_content(page) when is_binary(page) do
     form = [{"page", page}]
     %{body: body} = HTTPoison.post!(@url, {:multipart, form}, [])
 
-    {:ok, document} = body
+    html = body
     |> Codepagex.to_string!(@encoding)
-    |> Floki.parse_document()
+  end
 
-    document
+  def parse_document(html_content) do
+    {:ok, doc} = Floki.parse_document(html_content)
+    doc
   end
 
   def parse_music_info(document) do
