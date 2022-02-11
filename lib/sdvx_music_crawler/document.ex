@@ -44,6 +44,7 @@ defmodule SdvxMusicScraper.Document do
 				inf: parse_level(music_doc, ".inf"),
 				grv: parse_level(music_doc, ".grv"),
 				hvn: parse_level(music_doc, ".hvn"),
+				vvd: parse_level(music_doc, ".vvd"),
 			}
 		}
 	end

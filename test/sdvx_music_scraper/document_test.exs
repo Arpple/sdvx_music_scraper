@@ -44,6 +44,7 @@ defmodule SdvxMusicScraper.DocumentTest do
 			assert levels.inf == nil
 			assert levels.grv == nil
 			assert levels.hvn == nil
+			assert levels.vvd == nil
 		end
 	end
 end
