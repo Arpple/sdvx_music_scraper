@@ -9,7 +9,7 @@ install via github url
 ```elixir
 def deps do
   [
-    {:sdvx_music_scraper, git: "https://github.com/arpple/sdvx_music_scraper.git", tag: "0.1"}
+    {:sdvx_music_scraper, git: "https://github.com/arpple/sdvx_music_scraper.git", tag: "0.3"}
   ]
 end
 ```
