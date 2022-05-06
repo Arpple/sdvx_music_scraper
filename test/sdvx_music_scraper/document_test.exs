@@ -27,12 +27,17 @@ defmodule SdvxMusicScraper.DocumentTest do
 			assert length(list) == 20
 		end
 
+		test "grab id from image link", %{doc: doc} do
+			[music | _tail] = Document.get_music_list(doc)
+
+			assert music.id == "bcf5MwWqag47zYdBbue-bg"
+		end
+
 		test "contain music info", %{doc: doc} do
 			[music | _tail] = Document.get_music_list(doc)
 
 			assert music.name == "↑↑↓↓←→←→BA"
 			assert music.artist == "meiyo"
-			assert music.id == "qITA4PnaDDDpSeOPWszPmQ"
 			assert music.jacket == "https://p.eagate.573.jp/game/sdvx/vi/common/jacket.html?img=bcf5MwWqag47zYdBbue-bg"
 
 			levels = music.levels

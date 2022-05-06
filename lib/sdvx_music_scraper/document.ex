@@ -23,7 +23,7 @@ defmodule SdvxMusicScraper.Document do
 		artist = info_doc |> Enum.at(1) |> Floki.text()
 
 		link = music_doc
-		|> Floki.attribute("a", "href")
+		|> Floki.attribute("img", "src")
 		|> Enum.at(0)
 		|> String.split("=")
 		|> Enum.at(1)
