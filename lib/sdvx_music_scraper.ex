@@ -5,7 +5,7 @@ defmodule SdvxMusicScraper do
   def get_from_page(page) do
     page
     |> Html.from_web()
-    |> Html.parse()
+    |> Html.parse_body()
     |> Document.get_music_list()
   end
 
@@ -15,7 +15,7 @@ defmodule SdvxMusicScraper do
   @spec get_all_sync() :: list(%{})
   def get_all_sync() do
     first_page = Html.from_web(1)
-    |> Html.parse()
+    |> Html.parse_body()
 
     first_page_music_list = Document.get_music_list(first_page)
     count = Document.get_page_count(first_page)
