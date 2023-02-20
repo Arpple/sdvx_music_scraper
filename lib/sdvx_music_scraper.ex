@@ -4,7 +4,7 @@ defmodule SdvxMusicScraper do
   @spec get_from_page(integer()) :: list(%{})
   def get_from_page(page) do
     page
-    |> Html.from_web()
+    |> Html.get_body_from_web_page()
     |> Html.parse_body()
     |> Document.get_music_list()
   end
@@ -14,7 +14,7 @@ defmodule SdvxMusicScraper do
   """
   @spec get_all_sync() :: list(%{})
   def get_all_sync() do
-    first_page = Html.from_web(1)
+    first_page = Html.get_body_from_web_page(1)
     |> Html.parse_body()
 
     first_page_music_list = Document.get_music_list(first_page)
