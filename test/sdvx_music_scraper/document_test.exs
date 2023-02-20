@@ -5,8 +5,8 @@ defmodule SdvxMusicScraper.DocumentTest do
 
 	defp setup_doc(context) do
 		doc = "test/example/music.html"
-		|> Html.from_file()
-		|> Html.parse()
+		|> Html.get_body_from_file()
+		|> Html.parse_body()
 
 		Map.put(context, :doc, doc)
 	end
@@ -36,20 +36,22 @@ defmodule SdvxMusicScraper.DocumentTest do
 		test "contain music info", %{doc: doc} do
 			[music | _tail] = Document.get_music_list(doc)
 
-			assert music.name == "↑↑↓↓←→←→BA"
-			assert music.artist == "meiyo"
-			assert music.jacket == "https://p.eagate.573.jp/game/sdvx/vi/common/jacket.html?img=bcf5MwWqag47zYdBbue-bg"
+			assert %{
+				name: "↑↑↓↓←→←→BA",
+				artist: "meiyo",
+				jacket: "https://p.eagate.573.jp/game/sdvx/vi/common/jacket.html?img=bcf5MwWqag47zYdBbue-bg",
+				levels: %{
+					nov: 3,
+					adv: 10,
+					exh: 14,
+					mxm: 17,
 
-			levels = music.levels
-			assert levels.nov == 3
-			assert levels.adv == 10
-			assert levels.exh == 14
-			assert levels.mxm == 17
-
-			assert levels.inf == nil
-			assert levels.grv == nil
-			assert levels.hvn == nil
-			assert levels.vvd == nil
+					inf: nil,
+					grv: nil,
+					hvn: nil,
+					vvd: nil,
+				},
+			} = music
 		end
 	end
 end

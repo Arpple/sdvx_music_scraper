@@ -14,18 +14,6 @@ def deps do
 end
 ```
 
-create config for [Codepagex](https://github.com/tallakt/codepagex) to support "shift-jis" encoding in your `config/config.exs`
-``` elixir
-config :codepagex, :encodings, [
-  "VENDORS/MICSFT/WINDOWS/CP932"
-]
-```
-
-if you compile this lib or Codepagex before adding a config, you need to force recompile
-``` sh
-mix deps.compile codepagex --force
-```
-
 ## Usage
 get all music. this will get from page by page synchronously, so it will be slow
 ``` elixir

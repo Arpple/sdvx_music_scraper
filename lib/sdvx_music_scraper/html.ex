@@ -4,31 +4,30 @@ defmodule SdvxMusicScraper.Html do
 	@url "https://p.eagate.573.jp/game/sdvx/vi/music/index.html"
 	@encoding "VENDORS/MICSFT/WINDOWS/CP932"
 
-	def from_web(), do: from_web("1")
+	def get_body_from_web(), do: get_body_from_web_page("1")
 
-	def from_web(page) when is_number(page) do
-		from_web(to_string(page))
+	def get_body_from_web_page(page) when is_number(page) do
+		get_body_from_web_page(to_string(page))
 	end
 
-	def from_web(page) when is_binary(page) do
+	def get_body_from_web_page(page) when is_binary(page) do
 		form = [{"page", page}]
 		%{body: body} = HTTPoison.post!(@url, {:multipart, form}, [])
-
-		Codepagex.to_string!(body, @encoding)
+		body
 	end
 
 	@doc """
 	get html content from file without decoding from 'shift-jis'
 	your file need to be in 'utf-8'
 	"""
-	def from_file(path) do
+	def get_body_from_file(path) do
 		path
 		|> Path.expand()
 		|> File.read!()
 	end
 
-	def parse(html) do
-		{:ok, document} = Floki.parse_document(html)
+	def parse_body(body) do
+		{:ok, document} = Floki.parse_document(body)
 		document
 	end
 end
